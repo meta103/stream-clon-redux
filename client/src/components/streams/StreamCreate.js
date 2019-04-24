@@ -27,6 +27,20 @@ class StreamCreate extends Component {
   }
 }
 
+const validate = (formValues) => {
+  //Redux form interpreta que todo va bien si le retornamos un objeto vacio, asi que hacemos lo siguiente:
+  const errors = {};
+
+  if (!formValues.title) {
+    errors.title = "You must enter a title";
+  }
+
+  if (!formValues.description) {
+    errors.description = "You must enter a description";
+  }
+
+  return errors
+}
 
 export default reduxForm({
   form: 'streamCreate'
