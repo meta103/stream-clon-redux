@@ -1,3 +1,14 @@
 {
-  "streams": []
+  "streams": [
+    {
+      "title": "as",
+      "description": "as",
+      "id": 1
+    },
+    {
+      "title": "My Stream",
+      "description": "Amazing stream about... me ",
+      "id": 2
+    }
+  ]
 }

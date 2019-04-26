@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+//setup para llamadas a la API que hemos creado:
+import { connect } from 'react-redux';
+import { createStream } from '../../actions';
 
 class StreamCreate extends Component {
 
@@ -28,8 +31,9 @@ class StreamCreate extends Component {
     )
   }
 
-  onSubmit(event) {
-    console.log(event)
+  onSubmit = (formValues) => {
+    //Porque tengo que llamar a props cuando tengo importado el createStream? 
+    this.props.createStream(formValues)
 
   }
 
@@ -59,7 +63,17 @@ const validate = (formValues) => {
   return errors
 }
 
-export default reduxForm({
+//Como conectar connect & redux form: (la sintax es "nasty...")
+// export default connect() (reduxForm({
+//   form: 'streamCreate',
+//   validate
+// })(StreamCreate));
+
+//Una manera más limpia de conectar ambas cosas sería asi:
+
+const formWrapped = reduxForm({
   form: 'streamCreate',
   validate
-})(StreamCreate)
+})(StreamCreate);
+
+export default connect(null, { createStream })(formWrapped);

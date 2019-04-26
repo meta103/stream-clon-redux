@@ -1,5 +1,5 @@
 import { SIGN_IN, SIGN_OUT } from '../actions/types';
-import { access } from 'fs';
+// import { access } from 'fs';
 
 const INITIAL_STATE = {
   isSignedIn: null,
