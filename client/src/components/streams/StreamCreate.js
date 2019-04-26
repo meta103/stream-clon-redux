@@ -16,8 +16,11 @@ class StreamCreate extends Component {
   }
 
   renderInput = ({ input, label, meta }) => {
+    //la siguiente variables solo para que cuando haya error, ponga error como atributo en la classname para que el contenido se torne rojo. Esto es un feature de semantic UI
+    const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
+
     return (
-      <div className="field">
+      <div className={className}>
         <label>{label}</label>
         <input {...input} autoComplete="off" />
         {this.renderError(meta)}
@@ -32,7 +35,7 @@ class StreamCreate extends Component {
 
   render() {
     return (
-      <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form">
+      <form onSubmit={this.props.handleSubmit(this.onSubmit)} className="ui form error">
         <Field name='title' component={this.renderInput} label="Enter Title" />
         <Field name='description' component={this.renderInput} label="Enter Description" />
         <button className="ui button primary">Submit</button>
