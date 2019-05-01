@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { fetchStreams } from '../../actions';
 
 class StreamList extends Component {
@@ -37,11 +38,23 @@ class StreamList extends Component {
     })
   }
 
+  renderCreate() {
+    //Para mostrar el boton de creat stream solo si el usuario esta loggeado
+    if (this.props.isSignedIn) {
+      return (
+        <div style={{ textAlign: 'right' }}>
+          <Link to='streams/new' className="ui button primary">Create stream </Link>
+        </div>
+      );
+    }
+  }
+
   render() {
     return (
       <div>
         <h2>Streams</h2>
         <div className="ui celled list">{this.renderList()}</div>
+        {this.renderCreate()}
       </div>
     )
   }
@@ -51,7 +64,8 @@ const mapStateToProps = (state) => {
   //Convertimos el objeto en array para luego hacer map más facil (la estructura actual del state es un objeto con keys y dentro cada stream)
   return {
     streams: Object.values(state.streams),
-    currentUserId: state.auth.userId
+    currentUserId: state.auth.userId,
+    isSignedIn: state.auth.isSignedIn
   }
 }
 
