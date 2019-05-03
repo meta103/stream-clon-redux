@@ -13,7 +13,7 @@ class StreamList extends Component {
     if (stream.userId === this.props.currentUserId) {
       return (
         <div className="right floated content">
-          <button className="ui button primary">EDIT</button>
+          <Link to={`/streams/edit/${stream.id}`} className="ui button primary">EDIT</Link>
           <button className="ui button negative">DELETE</button>
         </div>
       )
@@ -39,7 +39,7 @@ class StreamList extends Component {
   }
 
   renderCreate() {
-    //Para mostrar el boton de creat stream solo si el usuario esta loggeado
+    //Para mostrar el boton de crear stream solo si el usuario esta loggeado
     if (this.props.isSignedIn) {
       return (
         <div style={{ textAlign: 'right' }}>
